@@ -1,0 +1,51 @@
+<!Doctype html>
+<html>
+ {% load static %} 
+    <head> 
+        <title>Index page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      
+       
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <form action = "" method = "POST">
+     {% csrf_token %}
+    <body>
+        <h1>Buy page</h1>
+           <input type="text" placeholder="" name="name" value="{{request.user}}"><br>
+           <input type="text" placeholder="" name="plan_type" value="{{ buy.plan_type}}"><br>
+           <input type="text" placeholder="" name="plan_per" value="{{ buy.plan_per }}"><br>
+              <input type="text" placeholder="" name="price" value="{{ buy.price }}"><br>
+ 
+   
+ <a href="/buy_plan" ><input type="submit" class="button" value="submit"  name="successsubmit"></a>
+
+   </form>     
+
+      {% for i in show %}
+<div class="card" style="width:18rem">
+  <img class="card-img-top" src="" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">Plan Type:{{i.plan_type}}</h4>
+    <p class="card-text">Plan details:{{i.plan_per}}</p>
+     <p class="card-text">Profit:{{i.profit}}</p>
+         <p class="card-text">Price:{{i.price}}</p>
+      {% if user.is_authenticated %}
+    <a href="" class="btn btn-primary">Buy Plan</a>
+     {% else %}
+       <a href="/login" class="btn btn-primary">Login</a>
+    
+    
+  </div>
+</div><br>
+     
+     
+
+
+ 
+
+
+
+    </body>
+</html>
+    

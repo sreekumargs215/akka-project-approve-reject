@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regitered Users</title>
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+ <style>
+    table,
+    th,
+    td 
+    {
+        border: 1px solid;
+    }
+</style>
+
+<body style="text-align:center">
+    <h2 style="text-align:center"> Admin Dashboard </h2>
+    
+
+      {% if user.is_authenticated %}
+     <p>Welcome, {{ user.username }}!</p>
+    {% else %}
+        <p>You are not logged in.</p>
+    {% endif %}
+
+
+     <h2 style="text-align:center"> Plan details </h2>
+
+    <a href="/add_plan"><input type="submit" class="btn btn-btn-primary" value="AddPlan"  name="successsubmit"></a>
+    <table align="center" style="margin: 0px auto;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Plan type</th>
+                <th>Plan percentage</th>
+                 <th>Profit</th>
+                  <th>Price</th>
+                 <th>Edit</th>
+                 <th>Delete</th>
+                 </tr>
+        </thead>
+        <tbody>
+            {% for i in nivi %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.plan_type}}</td>
+                <td>{{i.plan_per}}</td>
+                <td>{{i.profit}}</td>
+                 <td>{{i.price}}</td>
+                <td><a href="/edit_plan/{{i.id}}/"><input type="submit" class="btn btn-btn-primary" value="edit"  name="successsubmit"></a></td>
+                <td><a href="/del_plan/{{i.id}}/"><input type="submit" class="btn btn-btn-primary" value="delete"  name="successsubmit"></a></td>
+                  
+               
+            
+                   
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    <br>
+    <br>
+      <h2 style="text-align:center"> Registered Users </h2>
+    <table align="center" style="margin: 0px auto;">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>city</th>
+                <th>mobilenumber</th>
+                <th>Email</th>
+                <th>country</th>
+                 </tr>
+        </thead>
+        <tbody>
+            {% for x in nivi1 %}
+            <tr>
+                <td>{{x.user}}</td>
+                <td>{{x.city}}</td>
+                <td>{{x.phone}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.country}}</td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+ <h2 style="text-align:center"> Users Deposit </h2>
+    <table align="center" style="margin: 0px auto;">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+            
+                 </tr>
+        </thead>
+        <tbody>
+            {% for y in dep %}
+            <tr>
+                <td>{{y.username}}</td>
+                <td>{{y.amount}}</td>
+                <td>{{y.is_status}}</td>
+                <td><a href="/update/{{y.id}}/"><input type="submit" class="btn btn-btn-primary" value="action" name="successsubmit"></a></td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+</body>
+
+</html>
